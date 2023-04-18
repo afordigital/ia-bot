@@ -4,12 +4,12 @@ import { getPersonality } from './getPersonality.js'
 
 dotenv.config({ path: '../.env' })
 
-export const askGPT = async message => {
-  const KEY_GPT = process.env.KEY_GPT
-  const MAX_CHARACTERS = 100
-  const MODEL = 'gpt-3.5-turbo'
-  const API_URL = 'https://api.openai.com/v1/chat/completions'
+const KEY_GPT = process.env.KEY_GPT
+const MAX_CHARACTERS = 100
+const MODEL = 'gpt-3.5-turbo'
+const API_URL = 'https://api.openai.com/v1/chat/completions'
 
+export const askGPT = async message => {
   const cleanMessage = message.replaceAll(`"`, "'")
   const { personality, context } = getPersonality()
 

@@ -39,6 +39,10 @@ client.on('message', async (channel, tags, message, self) => {
 
   if (isChosen && isLongMessage) {
     const { personality, total_tokens, content } = await askGPT(message)
+    if (personality === "error" || total_tokens === 0) {
+      return
+    }
+
     client.say(channel, `@${username}: ` + personality + ' -> ' + content)
     console.log(` ${displayName}: ${message}`)
     console.log(`personalidad: ${personality} respuesta: ${content}`)
