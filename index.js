@@ -1,13 +1,7 @@
 import tmi from 'tmi.js'
-import dotenv from 'dotenv'
-import process from 'node:process'
-import IGNORED_USERS from './ignoredUsers.json' assert { type: 'json' }
 import { askGPT } from './modules/gpt.js'
+import { USER, PASSWORD, CHANNEL, IGNORED_USERS } from './constants/twitch.js';
 
-dotenv.config()
-const USER = process.env.USER
-const PASSWORD = process.env.PASSWORD
-const CHANNEL = 'afor_digital'
 
 const client = new tmi.Client({
   options: { debug: false },
@@ -22,13 +16,8 @@ client.connect()
 
 client.on('message', async (channel, tags, message, self) => {
   if (self) return
-
-  const username = tags.username
-  const displayName = tags['display-name']
-  const isFirstMessage = tags['first-msg']
-  const isMod = tags.mod
-  const isSubscriber = tags.subscriber
-  const isVip = Boolean(tags.vip)
+  
+  const {username, ['display-name']: displayName } = tags
 
   if (IGNORED_USERS.includes(username)) {
     return

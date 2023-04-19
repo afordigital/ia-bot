@@ -1,13 +1,6 @@
-import dotenv from 'dotenv'
-import process from 'node:process'
 import { getPersonality } from './getPersonality.js'
-
-dotenv.config({ path: '../.env' })
-
-const KEY_GPT = process.env.KEY_GPT
-const MAX_CHARACTERS = 100
-const MODEL = 'gpt-3.5-turbo'
-const API_URL = 'https://api.openai.com/v1/chat/completions'
+import {KEY_GPT, MAX_CHARACTERS, MODEL, API_URL} from '../constants/openAi.js';
+console.log({KEY_GPT, MAX_CHARACTERS, MODEL, API_URL})
 
 export const askGPT = async message => {
   const cleanMessage = message.replaceAll(`"`, "'")
