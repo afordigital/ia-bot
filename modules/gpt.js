@@ -1,6 +1,5 @@
 import { getPersonality } from './getPersonality.js'
 import {KEY_GPT, MAX_CHARACTERS, MODEL, API_URL} from '../constants/openAi.js';
-console.log({KEY_GPT, MAX_CHARACTERS, MODEL, API_URL})
 
 export const askGPT = async message => {
   const cleanMessage = message.replaceAll(`"`, "'")
